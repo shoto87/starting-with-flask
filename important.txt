@@ -1,0 +1,9 @@
+if gets any error while running scripts 
+Set-ExecutionPolicy unrestricted
+
+
+if __name__=="__main__":
+    app.run(debug=True)
+
+
+    

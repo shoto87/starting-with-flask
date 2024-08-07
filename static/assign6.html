@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li class="one">1</li>
+            <li class="two">2</li>
+            <li class="three">3</li>
+            <li class="four">4</li>
+            <li class="five">5</li>
+            <style>
+                div {
+                    display: flex;
+                    justify-content: center;
+        
+        
+                    ul {
+                        display: flex;
+                        align-items: center;
+                        list-style-type: none;
+                        
+                        li {
+        
+                            border: 1px solid steelblue;
+                            padding: 15px;
+                        }
+                          .one{
+                            background-color: rgba(0, 0, 0, 0.5);
+                            order: 3;
+                          } 
+                           
+                          .two{
+                            background-color: rgba(0, 0, 0 , 0.3);
+                            order: 1;
+                          }
+                          .three{
+                            background-color: rgba(0, 0, 0 , 0.2);
+                            order: 4;
+                          }
+                          .four{
+                            background-color: rgba(0,0,0,0.1);
+                            order: 5;
+                          }
+                          .five{
+                            order: 2;
+                           
+                          }
+                         
+                    }
+        
+                   
+                }
+                ul:hover{
+                    .one{
+                    /* background-color: brown; */
+                    order: 1;
+                }
+                .two{
+                    order: 2;
+                }
+                .three{
+                    order: 3;
+                }
+                .four{
+                    order: 4;
+                }
+                .five{
+                    order: 5;
+                }
+                }
+                
+            </style>
+        </ul>
+    </div>
+    
+</body>
+
+</html>
