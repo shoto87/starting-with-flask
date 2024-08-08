@@ -32,11 +32,11 @@ def hello_world():
         
        
 
-@app.route('/page1')
-def page1():
+@app.route('/home')
+def home():
     allTodo = Todo.query.all()
     print(allTodo)
-    return 'this is page 1'
+    return render_template('home.html',allTodo=allTodo)
 
 @app.route('/update')
 def update():
@@ -51,9 +51,11 @@ def delete(sno):
     db.session.commit()
     return redirect("/")
 
-@app.route('/page2')
-def page2():
-    return 'this is page 2'
+@app.route('/about')
+def about():
+    allTodo=Todo.query.all()
+    print(allTodo)
+    return render_template('about.html',allTodo=allTodo)
 
 if __name__ == "__main__":
     app.run(debug=True, port=2000)
