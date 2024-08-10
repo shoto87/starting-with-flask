@@ -1,73 +1,58 @@
 {% extends 'base.html' %}
- {% block title %}
-    Home
- {% endblock title %}   
+{% block title %}
+Home
+{% endblock title %}
 {% block body %}
 
+<script src="{{ url_for('static', filename='js/abc.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/abc.css') }}">
 
-    
+<div class="container">
+    <form action="/" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Todo Title</label>
+            <input type="text" name="title" class="form-control" id="title">
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Todo Description</label>
+            <input type="text" name="desc" class="form-control" id="desc">
+        </div>
+        <button type="submit" class="btn btn-outline-dark">Submit</button>
+    </form>
+</div>
 
-    <div class="container">
-        <form action="/" method="post">
-            <div class="mb-3">
-                <label for="title" class="form-label">todo title</label>
-                <input type="text" name="title" class="form-control" id="title">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">todo discription</label>
-                <input type="text" name="desc" class="form-control" id="exampleInputPassword1">
-            </div>
-            <!-- <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> -->
-            <button type="submit" class="btn btn-outline-dark">Submit</button>
-        </form>
+<div class="container">
+    {% if allTodo|length == 0 %}
+    <div class="alert alert-dark mt-5" role="alert">
+        No records found! Please add.
     </div>
+    {% else %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in allTodo %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.desc }}</td>
+                <td>{{ todo.date_created }}</td>
+                <td>
+                    <a href="/delete/{{ todo.sno }}" class="btn btn-outline-dark btn-sm mx-2">Delete</a>
+                    <a href="/update/{{ todo.sno }}" class="btn btn-outline-dark btn-sm mx-2">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
 
-    <div class="container">
-        <table class="table">
-            {% if allTodo|length == 0 %}
-            <div class="alert alert-dark mt-5" role="alert">
-                No records found !! please add 
-              </div>
-                    {% else %}
-            <thead>
-                <tr>
-                    <th scope="col">sno</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Actions</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                
-                
-                    
-                    
-                
-                {% for todo in allTodo %}
-                <tr>
-                    <th scope="row">{{loop.index}}</th>
-                    <td>{{todo.title}}</td>
-                    <td>{{todo.desc}}</td>
-                    <td>{{todo.date_created}}</td>
-                    <td> <a href="/delete/{{todo.sno}}" class="btn btn-outline-dark btn-sm mx-2">delete</a></td>
-                    <td> <a href="/update/{{todo.sno}}" class="btn btn-outline-dark btn-sm mx-2">update</a></td>
-
-                </tr>
-            </tbody>
-        </table>
-                {% endfor %}
-                {% endif %}    
-            
-    </div>
-   
-
-    {% endblock body %}
-
-
-
+{% endblock body %}

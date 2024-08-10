@@ -6,4 +6,21 @@ if __name__=="__main__":
     app.run(debug=True)
 
 
-    
+1) create db model first 
+
+    class Todo(db.Model):
+    sno = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    desc = db.Column(db.String(500), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self) -> str:
+        return f"{self.sno} - {self.title}"
+
+2) to create end points 
+
+    @app.route('/name of endpoint')
+def definesomething():
+    allTodo=Todo.query.all()
+    print(allTodo)
+    return render_template('theHtmlPage.html',allTodo=allTodo)
